@@ -4,6 +4,7 @@ void UserManager::addUser() {
     User user = enterNewRecpientData();
 
     users.push_back(user);
+    usersFile.addUserToFile(user);
 
     cout << endl << "Account successfully created" << endl << endl;
     system("pause");

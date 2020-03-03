@@ -5,13 +5,6 @@
 using namespace std;
 
 int main() {
-    UserManager userManager;
-
-    userManager.addUser();
-    userManager.addUser();
-    userManager.addUser();
-    userManager.viewAllUsers();
-    userManager.addUser();
-    userManager.viewAllUsers();
+    UserManager userManager("users.xml");
     return 0;
 }
