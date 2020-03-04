@@ -5,6 +5,7 @@
 #include <vector>
 #include <windows.h>
 
+#include "AuxiliaryMethods.h"
 #include "User.h"
 #include "UsersFile.h"
 
@@ -29,7 +30,6 @@ public:
     void logOutUser();
     void changePasswordLoggedUser();
     bool isUserLogged();
-    void viewAllUsers();
 };
 
 #endif
