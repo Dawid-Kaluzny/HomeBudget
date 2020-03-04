@@ -27,6 +27,8 @@ public:
     void addUser();
     int loginUser();
     void logOutUser();
+    void changePasswordLoggedUser();
+    bool isUserLogged();
     void viewAllUsers();
 };
 

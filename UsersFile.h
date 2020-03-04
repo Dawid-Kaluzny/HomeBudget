@@ -14,6 +14,7 @@ public:
     UsersFile(string usersFileName) : XmlFile(usersFileName) {};
     void addUserToFile(User user);
     vector <User> loadUsersFromFile();
+    void addAllUsersToFile(vector <User> &users);
 };
 
 #endif
