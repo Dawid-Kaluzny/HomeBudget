@@ -25,6 +25,8 @@ public:
         loggedUserId = 0;
     }
     void addUser();
+    int loginUser();
+    void logOutUser();
     void viewAllUsers();
 };
 
