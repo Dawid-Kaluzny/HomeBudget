@@ -59,3 +59,22 @@ vector <User> UsersFile::loadUsersFromFile() {
     }
     return users;
 }
+
+void UsersFile::addAllUsersToFile(vector <User> &users) {
+    CMarkup xml;
+
+    xml.AddElem("USERS");
+    xml.IntoElem();
+
+    for(vector <User>::iterator itr = users.begin(); itr != users.end(); itr++) {
+        xml.AddElem("USER");
+        xml.IntoElem();
+        xml.AddElem("USERID", itr -> getUserId());
+        xml.AddElem("LOGIN", itr -> getLogin());
+        xml.AddElem("PASSWORD", itr -> getPassword());
+        xml.AddElem("NAME", itr -> getName());
+        xml.AddElem("SURNAME", itr -> getSurname());
+        xml.OutOfElem();
+    }
+    xml.Save("users.xml");
+}

@@ -57,6 +57,64 @@ bool UserManager::isLoginExists(string login) {
     return false;
 }
 
+int UserManager::loginUser() {
+    string login = "", password = "";
+    loggedUserId = 0;
+
+    cout << "Enter login: ";
+    cin >> login;
+
+    vector <User>::iterator itr = users.begin();
+    while (itr != users.end()) {
+        if (itr -> getLogin() == login) {
+            for (int numberTries = 3; numberTries > 0; numberTries--) {
+                cout << "Enter password. Tries left: " << numberTries << ": ";
+                cin >> password;
+
+                if (itr -> getPassword() == password) {
+                    cout << endl << "You have logged in." << endl << endl;
+                    system("pause");
+                    loggedUserId = itr -> getUserId();
+                    return loggedUserId;
+                }
+            }
+            cout << "Incorrect password entered 3 times." << endl;
+            system("pause");
+            return loggedUserId;
+        }
+        itr++;
+    }
+    cout << "There is no user with such login." << endl << endl;
+    system("pause");
+    return loggedUserId;
+}
+
+void UserManager::logOutUser() {
+    loggedUserId = 0;
+}
+
+void UserManager::changePasswordLoggedUser() {
+    string newPassword = "";
+    cout << "Podaj nowe haslo: ";
+    cin >> newPassword;
+
+    for (vector <User>::iterator itr = users.begin(); itr != users.end(); itr++) {
+        if (itr -> getUserId() == loggedUserId) {
+            itr -> setPassword(newPassword);
+            cout << "Password has been changed." << endl << endl;
+            system("pause");
+        }
+    }
+    usersFile.addAllUsersToFile(users);
+}
+
+bool UserManager::isUserLogged() {
+    if (loggedUserId > 0)
+        return true;
+    else
+        return false;
+}
+
 void UserManager::viewAllUsers() {
     for (int i = 0; i < users.size(); i++) {
         cout << users[i].getUserId();
