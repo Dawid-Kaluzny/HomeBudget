@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-    Budget budget("users.xml");
+    Budget budget("users.xml", "incomes.xml");
 
     while (true) {
         if (budget.isUserLogged() == false) {
@@ -27,6 +27,9 @@ int main() {
 
         } else {
             switch (budget.selectOptionsUserMenu()) {
+            case '1':
+                budget.addIncome();
+                break;
             case '6':
                 budget.changePasswordLoggedUser();
                 break;

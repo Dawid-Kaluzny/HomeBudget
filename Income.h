@@ -9,6 +9,10 @@ using namespace std;
 
 class Income : public Finance {
     int incomeId;
+
+public:
+    void setIncomeId(int incomeId);
+    int getIncomeId();
 };
 
 #endif

@@ -4,14 +4,19 @@
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
+#include <string>
+
+#include "AuxiliaryMethods.h"
 
 using namespace std;
 
 class Date {
-    bool isDateCorrect(string year, string month, string day);
-    int calculateLastDayInMonth(string year, string month);
+    static bool isDateCorrect(string year, string month, string day);
+    static int calculateLastDayInMonth(string year, string month);
 public:
-    int getData();
+    static int getData();
+    static string convertDateFromIntToFormattedString(int date);
+    static int convertDateFromFormattedStringToInt(string formattedString);
 };
 
 #endif

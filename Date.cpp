@@ -6,7 +6,7 @@ int Date::getData() {
 
     cin >> choice;
 
-    if(choice == 't' || choice == 'T') {
+    if(choice == 'y' || choice == 'Y') {
         char bufor[64];
         time_t currentTime;
         time(&currentTime);
@@ -94,4 +94,22 @@ int Date::calculateLastDayInMonth(string year, string month) {
     break;
     }
     return lastDayInMonth;
+}
+
+string Date::convertDateFromIntToFormattedString(int digital) {
+    string formattedString = "";
+
+    formattedString = AuxiliaryMethods::convertIntToString(digital);
+    formattedString.insert(4, "-");
+    formattedString.insert(7, "-");
+    return formattedString;
+}
+
+int Date::convertDateFromFormattedStringToInt(string formattedString) {
+    int date;
+
+    formattedString.erase(7, 1);
+    formattedString.erase(4, 1);
+    date = atoi(formattedString.c_str());
+    return date;
 }

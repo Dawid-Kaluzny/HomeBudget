@@ -12,13 +12,13 @@ using namespace std;
 class Budget {
     UserManager userManager;
     BalanceManager *balanceManager;
+    const string INCOMES_FILE_NAME;
 
 public:
-    Budget(string usersFileName) : userManager(usersFileName) {
+    Budget(string usersFileName, string incomesFileName) : userManager(usersFileName), INCOMES_FILE_NAME(incomesFileName) {
         balanceManager = NULL;
     };
-    ~Budget()
-    {
+    ~Budget() {
         delete balanceManager;
         balanceManager = NULL;
     }
@@ -27,8 +27,10 @@ public:
     void logOutUser();
     void changePasswordLoggedUser();
     bool isUserLogged();
+    void addIncome();
     char selectOptionsMainMenu();
     char selectOptionsUserMenu();
+    void viewAllIncomes();
 };
 
 #endif
