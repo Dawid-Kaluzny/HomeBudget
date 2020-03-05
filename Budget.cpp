@@ -5,32 +5,28 @@ void Budget::addUser() {
     cin.ignore();
 }
 
-void Budget::loginUser()
-{
+void Budget::loginUser() {
     userManager.loginUser();
-    if(userManager.isUserLogged())
-    {
-
+    if(userManager.isUserLogged()) {
+        balanceManager = new BalanceManager(userManager.getIdLoggedUser());
     }
 }
 
-void Budget::logOutUser()
-{
+void Budget::logOutUser() {
     userManager.logOutUser();
+    delete balanceManager;
+    balanceManager = NULL;
 }
 
-void Budget::changePasswordLoggedUser()
-{
+void Budget::changePasswordLoggedUser() {
     userManager.changePasswordLoggedUser();
 }
 
-bool Budget::isUserLogged()
-{
+bool Budget::isUserLogged() {
     return userManager.isUserLogged();
 }
 
-char Budget::selectOptionsMainMenu()
-{
+char Budget::selectOptionsMainMenu() {
     char choice;
 
     system("cls");
@@ -46,8 +42,7 @@ char Budget::selectOptionsMainMenu()
     return choice;
 }
 
-char Budget::selectOptionsUserMenu()
-{
+char Budget::selectOptionsUserMenu() {
     char choice;
 
     system("cls");
