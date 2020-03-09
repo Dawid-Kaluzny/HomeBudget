@@ -30,11 +30,13 @@ User UserManager::enterNewRecpientData() {
     string name;
     cout << "Enter name: ";
     cin >> name;
+    name = AuxiliaryMethods::changeFirstLetterToUpperRemainingToLower(name);
     user.setName(name);
 
     string surname;
     cout << "Enter surname: ";
     cin >> surname;
+    surname = AuxiliaryMethods::changeFirstLetterToUpperRemainingToLower(surname);
     user.setSurname(surname);
 
     return user;
@@ -115,12 +117,6 @@ bool UserManager::isUserLogged() {
         return false;
 }
 
-void UserManager::viewAllUsers() {
-    for (int i = 0; i < users.size(); i++) {
-        cout << users[i].getUserId();
-        cout << users[i].getLogin();
-        cout << users[i].getPassword();
-        cout << users[i].getName();
-        cout << users[i].getSurname() << endl << endl;
-    }
+int UserManager::getIdLoggedUser() {
+    return loggedUserId;
 }

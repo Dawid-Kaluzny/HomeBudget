@@ -2,3 +2,5 @@ bin/
 obj/
 HomeBudget.*
 users.xml
+incomes.xml
+expenses.xml
