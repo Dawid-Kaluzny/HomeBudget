@@ -21,6 +21,7 @@ class BalanceManager {
 
     Income enterDataNewIncome();
     Expense enterDataNewExpense();
+    void viewBalance(int earliestDate, int latestDate);
 
 public:
     BalanceManager(string incomesFileName, string expensesFileName,int loggedUserId) :
@@ -30,7 +31,7 @@ public:
     };
     void addIncome();
     void addExpense();
-    void viewAllIncomes();
+    void viewBalanceFromCurrentMonth();
 };
 
 #endif

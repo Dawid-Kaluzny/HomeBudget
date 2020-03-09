@@ -19,6 +19,9 @@ public:
         this -> item = item;
         this -> amount = amount;
     }
+    bool operator < (const Finance& order) const {
+        return (date < order.date);
+    }
     void setUserId(int userId);
     void setDate(int date);
     void setItem(string item);

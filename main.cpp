@@ -30,8 +30,11 @@ int main() {
             case '1':
                 budget.addIncome();
                 break;
-                            case '2':
+            case '2':
                 budget.addExpense();
+                break;
+            case '3':
+                budget.viewBalanceFromCurrentMonth();
                 break;
             case '6':
                 budget.changePasswordLoggedUser();

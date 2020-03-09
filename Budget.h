@@ -31,9 +31,9 @@ public:
     bool isUserLogged();
     void addIncome();
     void addExpense();
+    void viewBalanceFromCurrentMonth();
     char selectOptionsMainMenu();
     char selectOptionsUserMenu();
-    void viewAllIncomes();
 };
 
 #endif

@@ -36,6 +36,11 @@ void Budget::addExpense()
    balanceManager -> addExpense();
 }
 
+void Budget::viewBalanceFromCurrentMonth()
+{
+    balanceManager -> viewBalanceFromCurrentMonth();
+}
+
 char Budget::selectOptionsMainMenu() {
     char choice;
 
@@ -60,6 +65,7 @@ char Budget::selectOptionsUserMenu() {
     cout << "---------------------------" << endl;
     cout << "1. Add Income" << endl;
     cout << "2. Add Expense" << endl;
+    cout << "3. Balance from the current month" << endl;
     cout << "---------------------------" << endl;
     cout << "6. Change password" << endl;
     cout << "7. Log out" << endl;
@@ -69,9 +75,3 @@ char Budget::selectOptionsUserMenu() {
 
     return choice;
 }
-
-void Budget::viewAllIncomes()
-{
-   balanceManager -> viewAllIncomes();
-}
-
