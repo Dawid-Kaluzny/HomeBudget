@@ -8,7 +8,7 @@ void Budget::addUser() {
 void Budget::loginUser() {
     userManager.loginUser();
     if(userManager.isUserLogged()) {
-        balanceManager = new BalanceManager(INCOMES_FILE_NAME, userManager.getIdLoggedUser());
+        balanceManager = new BalanceManager(INCOMES_FILE_NAME, EXPENSES_FILE_NAME, userManager.getIdLoggedUser());
     }
 }
 
@@ -29,6 +29,11 @@ bool Budget::isUserLogged() {
 void Budget::addIncome()
 {
    balanceManager -> addIncome();
+}
+
+void Budget::addExpense()
+{
+   balanceManager -> addExpense();
 }
 
 char Budget::selectOptionsMainMenu() {
@@ -54,6 +59,7 @@ char Budget::selectOptionsUserMenu() {
     cout << " >>> USER MENU <<<" << endl;
     cout << "---------------------------" << endl;
     cout << "1. Add Income" << endl;
+    cout << "2. Add Expense" << endl;
     cout << "---------------------------" << endl;
     cout << "6. Change password" << endl;
     cout << "7. Log out" << endl;
