@@ -132,3 +132,32 @@ void BalanceManager::viewBalance(int earliestDate, int latestDate) {
     cout << "SAVINGS: " << incomesSum - expensesSum << endl << endl;
     system("pause");
 }
+
+void BalanceManager::viewBalanceFromPreviousMonth() {
+    string earliestDate = "";
+    string previousMonth = "";
+    string year = "";
+    int earliestDatePreviousMonth = 0;
+    int latestDatePreviousMonth = 0;
+    char bufor[64];
+    time_t currentTime;
+
+    time(&currentTime);
+    tm currentLocalTime = *localtime(&currentTime);
+    if (currentLocalTime.tm_mon == 0) {
+        currentLocalTime.tm_mon = 11;
+        currentLocalTime.tm_year -= 1;
+    } else {
+        currentLocalTime.tm_mon -= 1;
+    }
+    strftime(bufor, sizeof(bufor), "%Y%m01", &currentLocalTime);
+    earliestDate = bufor;
+    earliestDatePreviousMonth = atoi(earliestDate.c_str());
+    strftime(bufor, sizeof(bufor), "%Y", &currentLocalTime);
+    year = bufor;
+    strftime(bufor, sizeof(bufor), "%m", &currentLocalTime);
+    previousMonth = bufor;
+    latestDatePreviousMonth = earliestDatePreviousMonth - 1 + Date::calculateLastDayInMonth(year, previousMonth);
+
+    viewBalance(earliestDatePreviousMonth, latestDatePreviousMonth);
+}

@@ -41,6 +41,12 @@ void Budget::viewBalanceFromCurrentMonth()
     balanceManager -> viewBalanceFromCurrentMonth();
 }
 
+void Budget::viewBalanceFromPreviousMonth()
+{
+    balanceManager -> viewBalanceFromPreviousMonth();
+}
+
+
 char Budget::selectOptionsMainMenu() {
     char choice;
 
@@ -66,6 +72,7 @@ char Budget::selectOptionsUserMenu() {
     cout << "1. Add Income" << endl;
     cout << "2. Add Expense" << endl;
     cout << "3. Balance from the current month" << endl;
+    cout << "4. Balance from the previous month" << endl;
     cout << "---------------------------" << endl;
     cout << "6. Change password" << endl;
     cout << "7. Log out" << endl;

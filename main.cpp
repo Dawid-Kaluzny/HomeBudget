@@ -36,6 +36,9 @@ int main() {
             case '3':
                 budget.viewBalanceFromCurrentMonth();
                 break;
+            case '4':
+                budget.viewBalanceFromPreviousMonth();
+                break;
             case '6':
                 budget.changePasswordLoggedUser();
                 break;

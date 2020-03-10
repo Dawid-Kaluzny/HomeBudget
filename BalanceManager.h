@@ -32,6 +32,7 @@ public:
     void addIncome();
     void addExpense();
     void viewBalanceFromCurrentMonth();
+    void viewBalanceFromPreviousMonth();
 };
 
 #endif
