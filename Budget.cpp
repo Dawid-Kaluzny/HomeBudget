@@ -10,6 +10,7 @@ void Budget::loginUser() {
     if(userManager.isUserLogged()) {
         balanceManager = new BalanceManager(INCOMES_FILE_NAME, EXPENSES_FILE_NAME, userManager.getIdLoggedUser());
     }
+    cin.ignore();
 }
 
 void Budget::logOutUser() {
@@ -20,32 +21,35 @@ void Budget::logOutUser() {
 
 void Budget::changePasswordLoggedUser() {
     userManager.changePasswordLoggedUser();
+    cin.ignore();
 }
 
 bool Budget::isUserLogged() {
     return userManager.isUserLogged();
 }
 
-void Budget::addIncome()
-{
-   balanceManager -> addIncome();
+void Budget::addIncome() {
+    balanceManager -> addIncome();
+    cin.ignore();
 }
 
-void Budget::addExpense()
-{
-   balanceManager -> addExpense();
+void Budget::addExpense() {
+    balanceManager -> addExpense();
+    cin.ignore();
 }
 
-void Budget::viewBalanceFromCurrentMonth()
-{
+void Budget::viewBalanceFromCurrentMonth() {
     balanceManager -> viewBalanceFromCurrentMonth();
 }
 
-void Budget::viewBalanceFromPreviousMonth()
-{
+void Budget::viewBalanceFromPreviousMonth() {
     balanceManager -> viewBalanceFromPreviousMonth();
 }
 
+void Budget::viewBalanceFromSelectedPeriod() {
+    balanceManager -> viewBalanceFromSelectedPeriod();
+    cin.ignore();
+}
 
 char Budget::selectOptionsMainMenu() {
     char choice;
@@ -73,6 +77,7 @@ char Budget::selectOptionsUserMenu() {
     cout << "2. Add Expense" << endl;
     cout << "3. Balance from the current month" << endl;
     cout << "4. Balance from the previous month" << endl;
+    cout << "5. Balance from the selected period" << endl;
     cout << "---------------------------" << endl;
     cout << "6. Change password" << endl;
     cout << "7. Log out" << endl;

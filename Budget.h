@@ -33,6 +33,7 @@ public:
     void addExpense();
     void viewBalanceFromCurrentMonth();
     void viewBalanceFromPreviousMonth();
+    void viewBalanceFromSelectedPeriod();
     char selectOptionsMainMenu();
     char selectOptionsUserMenu();
 };

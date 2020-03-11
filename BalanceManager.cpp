@@ -106,9 +106,12 @@ void BalanceManager::viewBalance(int earliestDate, int latestDate) {
     sort(incomes.begin(), incomes.end());
     sort(expenses.begin(), expenses.end());
     system("cls");
-    cout << "INCOMES" << endl;
 
-    for (vector<Income>::iterator itr = incomes.begin(), koniec = incomes.end(); itr != koniec; ++itr) {
+    cout << "BALANCE ";
+    cout << Date::convertDateFromIntToFormattedString(earliestDate) << " - " << Date::convertDateFromIntToFormattedString(latestDate) << endl;
+    cout << endl << "INCOMES" << endl;
+
+    for (vector<Income>::iterator itr = incomes.begin(), lastItr = incomes.end(); itr != lastItr; ++itr) {
         if (earliestDate <= itr -> getDate() && latestDate >= itr -> getDate()) {
             cout << Date::convertDateFromIntToFormattedString(itr -> getDate()) << " ";
             cout << itr -> getAmount() << " ";
@@ -118,7 +121,7 @@ void BalanceManager::viewBalance(int earliestDate, int latestDate) {
     }
     cout << endl << "EXPENSES" << endl;
 
-    for (vector<Expense>::iterator itr = expenses.begin(), koniec = expenses.end(); itr != koniec; ++itr) {
+    for (vector<Expense>::iterator itr = expenses.begin(), lastItr = expenses.end(); itr != lastItr; ++itr) {
         if (earliestDate <= itr -> getDate() && latestDate >= itr -> getDate()) {
             cout << Date::convertDateFromIntToFormattedString(itr -> getDate()) << " ";
             cout << itr -> getAmount() << " ";
@@ -129,7 +132,7 @@ void BalanceManager::viewBalance(int earliestDate, int latestDate) {
 
     cout << endl << "INCOMES SUM: " << incomesSum << endl;
     cout << "EXPENSES SUM: " << expensesSum << endl;
-    cout << "SAVINGS: " << incomesSum - expensesSum << endl << endl;
+    cout << endl <<"SAVINGS: " << incomesSum - expensesSum << endl << endl;
     system("pause");
 }
 
@@ -160,4 +163,21 @@ void BalanceManager::viewBalanceFromPreviousMonth() {
     latestDatePreviousMonth = earliestDatePreviousMonth - 1 + Date::calculateLastDayInMonth(year, previousMonth);
 
     viewBalance(earliestDatePreviousMonth, latestDatePreviousMonth);
+}
+
+void BalanceManager::viewBalanceFromSelectedPeriod() {
+    int earliestDate = 0;
+    int latestDate = 0;
+
+    cout << "Is the start date today? [y/n]:";
+    earliestDate = Date::getData();
+    cout << "Is the start end today? [y/n]:";
+    latestDate = Date::getData();
+
+    if (earliestDate <= latestDate) {
+        viewBalance(earliestDate, latestDate);
+    } else {
+        cout << "You entered an invalid date range!" << endl;
+        system("pause");
+    }
 }
