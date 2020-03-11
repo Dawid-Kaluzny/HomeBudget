@@ -76,13 +76,108 @@ Expense BalanceManager::enterDataNewExpense() {
     return expense;
 }
 
-void BalanceManager::viewAllIncomes() {
-    for(int i= 0; i <incomes.size(); i++) {
-        cout << incomes[i].getIncomeId() << " ";
-        cout << incomes[i].getUserId() << " ";
-        cout << incomes[i].getDate() << " ";
-        cout << incomes[i].getItem() << " ";
-        cout << incomes[i].getAmount() << endl;
+void BalanceManager::viewBalanceFromCurrentMonth() {
+    string earliestDate = "";
+    string currentMonth = "";
+    string currentYear = "";
+    int earliestDateCurrentMonth = 0;
+    int latestDateCurrentMonth = 0;
+    char bufor[64];
+    time_t currentTime;
+
+    time(&currentTime);
+    tm currentLocalTime = *localtime(&currentTime);
+    strftime(bufor, sizeof(bufor), "%Y%m01", &currentLocalTime);
+    earliestDate = bufor;
+    earliestDateCurrentMonth = atoi(earliestDate.c_str());
+    strftime(bufor, sizeof(bufor), "%Y", &currentLocalTime);
+    currentYear = bufor;
+    strftime(bufor, sizeof(bufor), "%m", &currentLocalTime);
+    currentMonth = bufor;
+    latestDateCurrentMonth = earliestDateCurrentMonth - 1 + Date::calculateLastDayInMonth(currentYear, currentMonth);
+
+    viewBalance(earliestDateCurrentMonth, latestDateCurrentMonth);
+}
+
+void BalanceManager::viewBalance(int earliestDate, int latestDate) {
+    float incomesSum = 0;
+    float expensesSum = 0;
+
+    sort(incomes.begin(), incomes.end());
+    sort(expenses.begin(), expenses.end());
+    system("cls");
+
+    cout << "BALANCE ";
+    cout << Date::convertDateFromIntToFormattedString(earliestDate) << " - " << Date::convertDateFromIntToFormattedString(latestDate) << endl;
+    cout << endl << "INCOMES" << endl;
+
+    for (vector<Income>::iterator itr = incomes.begin(), lastItr = incomes.end(); itr != lastItr; ++itr) {
+        if (earliestDate <= itr -> getDate() && latestDate >= itr -> getDate()) {
+            cout << Date::convertDateFromIntToFormattedString(itr -> getDate()) << " ";
+            cout << itr -> getAmount() << " ";
+            cout << itr -> getItem() << endl;
+            incomesSum += itr -> getAmount();
+        }
     }
+    cout << endl << "EXPENSES" << endl;
+
+    for (vector<Expense>::iterator itr = expenses.begin(), lastItr = expenses.end(); itr != lastItr; ++itr) {
+        if (earliestDate <= itr -> getDate() && latestDate >= itr -> getDate()) {
+            cout << Date::convertDateFromIntToFormattedString(itr -> getDate()) << " ";
+            cout << itr -> getAmount() << " ";
+            cout << itr -> getItem() << endl;
+            expensesSum += itr -> getAmount();
+        }
+    }
+
+    cout << endl << "INCOMES SUM: " << incomesSum << endl;
+    cout << "EXPENSES SUM: " << expensesSum << endl;
+    cout << endl <<"SAVINGS: " << incomesSum - expensesSum << endl << endl;
     system("pause");
+}
+
+void BalanceManager::viewBalanceFromPreviousMonth() {
+    string earliestDate = "";
+    string previousMonth = "";
+    string year = "";
+    int earliestDatePreviousMonth = 0;
+    int latestDatePreviousMonth = 0;
+    char bufor[64];
+    time_t currentTime;
+
+    time(&currentTime);
+    tm currentLocalTime = *localtime(&currentTime);
+    if (currentLocalTime.tm_mon == 0) {
+        currentLocalTime.tm_mon = 11;
+        currentLocalTime.tm_year -= 1;
+    } else {
+        currentLocalTime.tm_mon -= 1;
+    }
+    strftime(bufor, sizeof(bufor), "%Y%m01", &currentLocalTime);
+    earliestDate = bufor;
+    earliestDatePreviousMonth = atoi(earliestDate.c_str());
+    strftime(bufor, sizeof(bufor), "%Y", &currentLocalTime);
+    year = bufor;
+    strftime(bufor, sizeof(bufor), "%m", &currentLocalTime);
+    previousMonth = bufor;
+    latestDatePreviousMonth = earliestDatePreviousMonth - 1 + Date::calculateLastDayInMonth(year, previousMonth);
+
+    viewBalance(earliestDatePreviousMonth, latestDatePreviousMonth);
+}
+
+void BalanceManager::viewBalanceFromSelectedPeriod() {
+    int earliestDate = 0;
+    int latestDate = 0;
+
+    cout << "Is the start date today? [y/n]:";
+    earliestDate = Date::getData();
+    cout << "Is the start end today? [y/n]:";
+    latestDate = Date::getData();
+
+    if (earliestDate <= latestDate) {
+        viewBalance(earliestDate, latestDate);
+    } else {
+        cout << "You entered an invalid date range!" << endl;
+        system("pause");
+    }
 }

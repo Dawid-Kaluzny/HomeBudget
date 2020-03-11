@@ -17,7 +17,7 @@ class Budget {
 
 public:
     Budget(string usersFileName, string incomesFileName, string expensesFileName)
-    : userManager(usersFileName), INCOMES_FILE_NAME(incomesFileName), EXPENSES_FILE_NAME(expensesFileName) {
+        : userManager(usersFileName), INCOMES_FILE_NAME(incomesFileName), EXPENSES_FILE_NAME(expensesFileName) {
         balanceManager = NULL;
     };
     ~Budget() {
@@ -31,9 +31,11 @@ public:
     bool isUserLogged();
     void addIncome();
     void addExpense();
+    void viewBalanceFromCurrentMonth();
+    void viewBalanceFromPreviousMonth();
+    void viewBalanceFromSelectedPeriod();
     char selectOptionsMainMenu();
     char selectOptionsUserMenu();
-    void viewAllIncomes();
 };
 
 #endif

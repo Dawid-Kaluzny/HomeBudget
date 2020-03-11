@@ -97,7 +97,7 @@ void UserManager::logOutUser() {
 
 void UserManager::changePasswordLoggedUser() {
     string newPassword = "";
-    cout << "Podaj nowe haslo: ";
+    cout << "Enter new password: ";
     cin >> newPassword;
 
     for (vector <User>::iterator itr = users.begin(); itr != users.end(); itr++) {
